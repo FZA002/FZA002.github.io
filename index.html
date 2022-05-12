@@ -14572,7 +14572,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://media.giphy.com/media/uypubDRjnv0icWp2hV/giphy.gif" alt="ChessUrl" title="chess"></p>
+<p><img src="https://media.giphy.com/media/uypubDRjnv0icWp2hV/giphy.gif" alt="WalkUrl" title="Walk"></p>
 
 </div>
 </div>
@@ -14603,7 +14603,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="The-Data">The Data<a class="anchor-link" href="#The-Data">&#182;</a></h1><p>The data I will use will only be on fights in the UFC. It's worth noting that of Conor's record of 22 wins and 6 losses, only the 14 most recent of those fights were in the UFC. The internet has very conveniently blessed the world with <a href="http://ufcstats.com/statistics/events/completed">http://ufcstats.com/statistics/events/completed</a>. This website has detailed statistics on every fighter and fight that has taken place in the UFC. It has statistics on a fighter as a whole, on specific fights, and even specific rounds of fights. It allows us to see how many strikes a fighter lands, their accuracy, where the strikes landed, how many takedowns they land or go for, and much more.</p>
+<h1 id="The-Data">The Data<a class="anchor-link" href="#The-Data">&#182;</a></h1><p>The data I will use will mostly only be on fights in the UFC. It's worth noting that of Conor's record of 22 wins and 6 losses, only the 14 most recent of those fights were in the UFC. The internet has very conveniently blessed the world with <a href="http://ufcstats.com/statistics/events/completed">http://ufcstats.com/statistics/events/completed</a>. This website has detailed statistics on every fighter and fight that has taken place in the UFC. It has statistics on a fighter as a whole, on specific fights, and even specific rounds of fights. It allows us to see how many strikes a fighter lands, their accuracy, where the strikes landed, how many takedowns they land or go for, and much more.</p>
 
 </div>
 </div>
@@ -14620,7 +14620,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
@@ -14628,8 +14628,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bs</span>
 
 <span class="c1"># Use pandas to grab the table of Conor&#39;s fights</span>
-<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s2">&quot;http://ufcstats.com/fighter-details/f4c49976c75c5ab2&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s2">&quot;http://ufcstats.com/fighter-details/f4c49976c75c5ab2&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span> <span class="p">,</span> <span class="p">:]</span> <span class="c1"># Get rid of first row, which is just NaN&#39;s</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14647,68 +14648,377 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-OutputArea-child">
 
     
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[57]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W/L</th>
+      <th>Fighter</th>
+      <th>Kd</th>
+      <th>Str</th>
+      <th>Td</th>
+      <th>Sub</th>
+      <th>Event</th>
+      <th>Method</th>
+      <th>Round</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>loss</td>
+      <td>Conor McGregor  Dustin Poirier</td>
+      <td>0  0</td>
+      <td>27  36</td>
+      <td>0  1</td>
+      <td>1  0</td>
+      <td>UFC 264: Poirier vs. McGregor 3  Jul. 10, 2021</td>
+      <td>KO/TKO</td>
+      <td>1.0</td>
+      <td>5:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>loss</td>
+      <td>Conor McGregor  Dustin Poirier</td>
+      <td>0  1</td>
+      <td>29  48</td>
+      <td>0  1</td>
+      <td>0  0</td>
+      <td>UFC 257: Poirier vs. McGregor  Jan. 23, 2021</td>
+      <td>KO/TKO  Punches</td>
+      <td>2.0</td>
+      <td>2:32</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>win</td>
+      <td>Conor McGregor  Donald Cerrone</td>
+      <td>1  0</td>
+      <td>19  0</td>
+      <td>0  0</td>
+      <td>0  0</td>
+      <td>UFC 246: McGregor vs. Cowboy  Jan. 18, 2020</td>
+      <td>KO/TKO  Punches</td>
+      <td>1.0</td>
+      <td>0:40</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>loss</td>
+      <td>Conor McGregor  Khabib Nurmagomedov</td>
+      <td>0  0</td>
+      <td>51  70</td>
+      <td>0  3</td>
+      <td>0  1</td>
+      <td>UFC 229: Khabib vs. McGregor  Oct. 06, 2018</td>
+      <td>SUB  Neck Crank</td>
+      <td>4.0</td>
+      <td>3:03</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>win</td>
+      <td>Conor McGregor  Eddie Alvarez</td>
+      <td>3  0</td>
+      <td>32  9</td>
+      <td>0  0</td>
+      <td>0  0</td>
+      <td>UFC 205: Alvarez vs McGregor  Nov. 12, 2016</td>
+      <td>KO/TKO  Punches</td>
+      <td>2.0</td>
+      <td>3:04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Factor-1:-Pay-per-Fight">Factor 1: Pay per Fight<a class="anchor-link" href="#Factor-1:-Pay-per-Fight">&#182;</a></h1><p><img src="https://media.giphy.com/media/tuWADkb2g3PAk/giphy.gif" alt="MoneyUrl" title="Money"></p>
+<p>It's no surprise that as McGregor's popularity grew, so did his paychecks. Conor started at a mere 8,000 dollars to show up to fight, and an additional $8,000 to win. Don't forget, that's before taxes as well as paying his fighting team. This was also before he earned numerous, lucrative sponsorships and started many of his own businesses, which have only further fattened his pockets. I was able to find his pay (excluding additional earnings from Pay-per-view percentages) for each fight in the UFC from <a href="https://thesportsdaily.com/2021/07/11/conor-mcgregor-career-earnings-fox11/">https://thesportsdaily.com/2021/07/11/conor-mcgregor-career-earnings-fox11/</a>. Is the saying, "It’s tough to get out of bed to do roadwork at 5am when you’ve been sleeping in silk pajamas" true for Conor? Or has the money not gotten to his head in terms of performance? Let's find out.</p>
+
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Add the pay Conor earned for each fight to our dataframe</span>
+<span class="n">pay</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5011000</span><span class="p">,</span> <span class="mi">5011000</span><span class="p">,</span> <span class="mi">3060000</span><span class="p">,</span> <span class="mi">2980000</span><span class="p">,</span> <span class="mi">3090000</span><span class="p">,</span> <span class="mi">3090000</span><span class="p">,</span> <span class="mi">1090000</span><span class="p">,</span> <span class="mi">590000</span><span class="p">,</span> <span class="mi">580000</span><span class="p">,</span> <span class="mi">220000</span><span class="p">,</span> <span class="mi">200000</span><span class="p">,</span> <span class="mi">82000</span><span class="p">,</span> <span class="mi">24000</span><span class="p">,</span> <span class="mi">76000</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Pay&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pay</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Reverse the dataframe so oldest fights are at top</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[58]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W/L</th>
+      <th>Fighter</th>
+      <th>Kd</th>
+      <th>Str</th>
+      <th>Td</th>
+      <th>Sub</th>
+      <th>Event</th>
+      <th>Method</th>
+      <th>Round</th>
+      <th>Time</th>
+      <th>Pay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14</th>
+      <td>win</td>
+      <td>Conor McGregor  Marcus Brimage</td>
+      <td>1  0</td>
+      <td>21  12</td>
+      <td>0  0</td>
+      <td>0  0</td>
+      <td>UFC on FUEL TV: Mousasi vs Latifi  Apr. 06, 2013</td>
+      <td>KO/TKO  Punches</td>
+      <td>1.0</td>
+      <td>1:07</td>
+      <td>76000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>win</td>
+      <td>Conor McGregor  Max Holloway</td>
+      <td>0  0</td>
+      <td>53  23</td>
+      <td>4  0</td>
+      <td>0  0</td>
+      <td>UFC Fight Night: Shogun vs Sonnen  Aug. 17, 2013</td>
+      <td>U-DEC</td>
+      <td>3.0</td>
+      <td>5:00</td>
+      <td>24000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>win</td>
+      <td>Conor McGregor  Diego Brandao</td>
+      <td>1  0</td>
+      <td>18  9</td>
+      <td>1  0</td>
+      <td>0  1</td>
+      <td>UFC Fight Night: McGregor vs Brandao  Jul. 19,...</td>
+      <td>KO/TKO  Punch</td>
+      <td>1.0</td>
+      <td>4:05</td>
+      <td>82000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>win</td>
+      <td>Conor McGregor  Dustin Poirier</td>
+      <td>1  0</td>
+      <td>9  10</td>
+      <td>0  0</td>
+      <td>0  0</td>
+      <td>UFC 178: Johnson vs Cariaso  Sep. 27, 2014</td>
+      <td>KO/TKO  Punch</td>
+      <td>1.0</td>
+      <td>1:46</td>
+      <td>200000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>win</td>
+      <td>Conor McGregor  Dennis Siver</td>
+      <td>1  0</td>
+      <td>64  32</td>
+      <td>0  0</td>
+      <td>0  0</td>
+      <td>UFC Fight Night: McGregor vs Siver  Jan. 18, 2015</td>
+      <td>KO/TKO  Punch</td>
+      <td>2.0</td>
+      <td>1:54</td>
+      <td>220000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now that we have his pay per fight, let's calculate his cumulative win loss ratio before each fight. Here I'm going to start the win-loss ratio to include his record before the UFC (12-2). It's safe to assume that he was making much less per fight before he joined the organization. This would start him with a win-loss of 6.0.</p>
+
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Iterate through the dataframe and keep a running tab of Conor&#39;s professional record</span>
+<span class="n">wins</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ratio</span> <span class="o">=</span> <span class="n">wins</span><span class="o">/</span><span class="n">losses</span>
+<span class="n">wl_ratio_column</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">record_column</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Go through the dataframe from bottom to top, since the bottom of the dataframe is the oldest fight</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s2">&quot;W/L&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;win&quot;</span><span class="p">:</span>
+        <span class="n">wins</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">losses</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="n">ratio</span> <span class="o">=</span> <span class="n">wins</span><span class="o">/</span><span class="n">losses</span>
+    <span class="n">wl_ratio_column</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ratio</span><span class="p">]</span>
+    <span class="n">record_column</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">wins</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">losses</span><span class="p">))]</span>
+    
+<span class="c1"># Add the wl ratio and record to the dataframe</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Record After Fight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">record_column</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Win/Loss Ratio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wl_ratio_column</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> <span class="c1"># Fix indicies</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Finally, lets visualize this</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">mlp</span>
+<span class="n">mlp</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Conor&#39;s Pay Per Fight Versus Win/Loss Ratio&quot;</span><span class="p">)</span>
+<span class="n">mlp</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Win/Loss Ratio&quot;</span><span class="p">)</span>
+<span class="n">mlp</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Pay&quot;</span><span class="p">)</span>
+<span class="n">mlp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Pay&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Win/Loss Ratio&quot;</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[55]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[&lt;matplotlib.lines.Line2D at 0x7f39342e7610&gt;]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>     W/L                              Fighter    Kd       Str    Td   Sub  \
-0    NaN                                  NaN   NaN       NaN   NaN   NaN   
-1   loss       Conor McGregor  Dustin Poirier  0  0    27  36  0  1  1  0   
-2   loss       Conor McGregor  Dustin Poirier  0  1    29  48  0  1  0  0   
-3    win       Conor McGregor  Donald Cerrone  1  0     19  0  0  0  0  0   
-4   loss  Conor McGregor  Khabib Nurmagomedov  0  0    51  70  0  3  0  1   
-5    win        Conor McGregor  Eddie Alvarez  3  0     32  9  0  0  0  0   
-6    win            Conor McGregor  Nate Diaz  3  0  164  166  0  1  0  0   
-7   loss            Conor McGregor  Nate Diaz  0  0    61  77  0  1  0  2   
-8    win            Conor McGregor  Jose Aldo  1  0      5  1  0  0  0  0   
-9    win          Conor McGregor  Chad Mendes  1  0    46  31  0  4  0  0   
-10   win         Conor McGregor  Dennis Siver  1  0    64  32  0  0  0  0   
-11   win       Conor McGregor  Dustin Poirier  1  0     9  10  0  0  0  0   
-12   win        Conor McGregor  Diego Brandao  1  0     18  9  1  0  0  1   
-13   win         Conor McGregor  Max Holloway  0  0    53  23  4  0  0  0   
-14   win       Conor McGregor  Marcus Brimage  1  0    21  12  0  0  0  0   
 
-                                                Event                 Method  \
-0                                                 NaN                    NaN   
-1      UFC 264: Poirier vs. McGregor 3  Jul. 10, 2021                 KO/TKO   
-2        UFC 257: Poirier vs. McGregor  Jan. 23, 2021        KO/TKO  Punches   
-3         UFC 246: McGregor vs. Cowboy  Jan. 18, 2020        KO/TKO  Punches   
-4         UFC 229: Khabib vs. McGregor  Oct. 06, 2018        SUB  Neck Crank   
-5         UFC 205: Alvarez vs McGregor  Nov. 12, 2016        KO/TKO  Punches   
-6         UFC 202: Diaz vs. McGregor 2  Aug. 20, 2016                  M-DEC   
-7            UFC 196: McGregor vs Diaz  Mar. 05, 2016  SUB  Rear Naked Choke   
-8            UFC 194: Aldo vs McGregor  Dec. 12, 2015          KO/TKO  Punch   
-9          UFC 189: Mendes vs McGregor  Jul. 11, 2015          KO/TKO  Punch   
-10  UFC Fight Night: McGregor vs Siver  Jan. 18, 2015          KO/TKO  Punch   
-11         UFC 178: Johnson vs Cariaso  Sep. 27, 2014          KO/TKO  Punch   
-12  UFC Fight Night: McGregor vs Brandao  Jul. 19,...          KO/TKO  Punch   
-13   UFC Fight Night: Shogun vs Sonnen  Aug. 17, 2013                  U-DEC   
-14   UFC on FUEL TV: Mousasi vs Latifi  Apr. 06, 2013        KO/TKO  Punches   
 
-    Round  Time  
-0     NaN   NaN  
-1     1.0  5:00  
-2     2.0  2:32  
-3     1.0  0:40  
-4     4.0  3:03  
-5     2.0  3:04  
-6     5.0  5:00  
-7     2.0  4:12  
-8     1.0  0:13  
-9     2.0  4:57  
-10    2.0  1:54  
-11    1.0  1:46  
-12    1.0  4:05  
-13    3.0  5:00  
-14    1.0  1:07  
-</pre>
-</div>
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
 
 </div>
 
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>As you can see, as Conor's pay increased, it seems that his win-loss ratio decreased. He had an inital 7 fight win streak, and after that, he started making over $500,000 per fight, which is around when his win-loss ratio rapidly declined. Other factors aside, it does seem that as Conor earned more money, he also earned more losses. But remember, correlation does not equal causation!</p>
+
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
