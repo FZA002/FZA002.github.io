@@ -15370,8 +15370,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
         
     <span class="c1"># Add this fight&#39;s stats to list of all fights&#39; stats</span>
     <span class="n">all_stats</span> <span class="o">+=</span> <span class="p">[</span><span class="n">individual_stats</span><span class="p">]</span>
-    
-<span class="c1"># 82 lines of python</span>
 </pre></div>
 
      </div>
@@ -15383,7 +15381,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>After that painstaking data collection and curation, we now have a list of Conor's total significant strikes, significant strike percentage, head strikes, body strikes, leg strikes, strikes from a distance, clinch strikes, and ground strikes, for each of Conor's fights in the UFC. Let's see how Conor's accuracy has held up across his career, specifically for each kind of strike. Let's also see the ratio of different strike types to overall strikes, to see whether or not Conor really did start relying heavily on his boxing after Floyd. I'm not going to count ground, clinch, or distance strikes, as they can overlap with the other stats and aren't relevant to this analysis.</p>
+<p>After that painstaking data collection and curation, we now have a list of Conor's total significant strikes, significant strike percentage, head strikes, body strikes, leg strikes, strikes from a distance, clinch strikes, and ground strikes, for each of Conor's fights in the UFC. Let's see how Conor's accuracy has held up across his career. Let's also see the ratio of different strike types to overall strikes, to see whether or not Conor really did start relying heavily on his boxing after Floyd. I'm not going to count ground, clinch, or distance strikes, as they can overlap with the other stats and aren't relevant to this analysis.</p>
 <h2 id="Exploratory-Analysis">Exploratory Analysis<a class="anchor-link" href="#Exploratory-Analysis">&#182;</a></h2>
 </div>
 </div>
@@ -15440,7 +15438,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[90]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[93]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># First plot Conor&#39;s accuracy over his fights</span>
@@ -15454,7 +15452,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="k">for</span> <span class="n">fight</span> <span class="ow">in</span> <span class="n">all_fights</span><span class="p">:</span>
     <span class="n">accuracies</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">fight</span><span class="p">[</span><span class="s2">&quot;Significant Strike Accuracy&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])]</span>
 
-<span class="c1"># Add linear regression model and plot </span>
+<span class="c1"># Add line of best fit and plot </span>
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">mlp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
 <span class="n">mlp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
@@ -15475,13 +15473,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[90]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[93]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7ff4eab07970&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7ff4ea08e1f0&gt;]</pre>
 </div>
 
 </div>
@@ -15510,7 +15508,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The line of best fit seems to indicate that Conor's accuracy has gotten better, but the data is scattered enough that I lean towards unpredictable. It is worth noting that of his last four fights (post-Floyd), his 3 of those fights were within his top 5 most accurate fights. Let's keep exploring.</p>
+<p>The line of best fit seems to indicate that Conor's accuracy has gotten better, but the data is scattered enough that I lean towards unpredictable. It is worth noting that of his last four fights (post-Floyd), 3 of those fights were within his top 5 most accurate fights. Let's keep exploring.</p>
 <h2 id="More-Exploratory-Analysis">More Exploratory Analysis<a class="anchor-link" href="#More-Exploratory-Analysis">&#182;</a></h2>
 </div>
 </div>
@@ -15601,7 +15599,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="So-does-Conor-suck-now-or-not?">So does Conor suck now or not?<a class="anchor-link" href="#So-does-Conor-suck-now-or-not?">&#182;</a></h2><p>Great question young padawan. At first glimpse, it may seem like Conor has fallen off recently, since he's only won once in his last four bouts. If we consider his accuracy and variety of strikes, not much has changed across his career. However, let's consider the other two factors. First, it does seem that as Conor became richer, his performance became poorer, at least in terms of his ability to win. Second, Conor started his career in the UFC with 7 fights in a row at featherweight, winning them all. As he ventured out of that weight class, he started losing a lot more, with a record of 3-4 outside of the featherweight division. But let me reiterate, CORRELATION DOES NOT EQUAL CAUSATION. And no, I'm not just saying that because I like Conor. A lot of non-quantifiable things have changed, such as his mindset after losing multiple times, fighting harder opponents later in his career, and taking much longer between fights that when he was on his rise. He also could have stayed at the weight class that he performed best at, but has chosen to fight bigger opponents, even if it hurt his record. So to answer your question, no, he doesn't suck now. To be honest, I think only time will tell whether or not Conor has truly fell off, but his legacy has definitely been hurt by some of his more recent fights. In the end, Conor is still as entertaining as ever, and will forever be his own type of legend, win or lose.</p>
+<h2 id="So-does-Conor-suck-now-or-not?">So does Conor suck now or not?<a class="anchor-link" href="#So-does-Conor-suck-now-or-not?">&#182;</a></h2><p><img src="https://media.giphy.com/media/3o6Ztctr3MC8LMNTaw/giphy.gif" alt="WinUrl" title="Win"></p>
+<p>Great question young padawan. At first glimpse, it may seem like Conor has fallen off recently, since he's only won once in his last four bouts. If we consider his accuracy and variety of strikes, not much has changed across his career. However, let's consider the other two factors. First, it does seem that as Conor became richer, his performance became poorer, at least in terms of his ability to win. Second, Conor started his career in the UFC with 7 fights in a row at featherweight, winning them all. As he ventured out of that weight class, he started losing a lot more, with a record of 3-4 outside of the featherweight division. But let me reiterate, CORRELATION DOES NOT EQUAL CAUSATION. And no, I'm not just saying that because I like Conor. A lot of non-quantifiable things have changed, such as his mindset after losing multiple times, fighting harder opponents later in his career, and taking much longer between fights that when he was on his rise. He also could have stayed at the weight class that he performed best at, but has chosen to fight bigger opponents, even if it hurt his record. So to answer your question, no, he doesn't suck now. To be honest, I think only time will tell whether or not Conor has truly fell off, but his legacy has definitely been hurt by some of his more recent fights. In the end, Conor is still as entertaining as ever, and will forever be his own type of legend, win or lose.</p>
 
 </div>
 </div>
